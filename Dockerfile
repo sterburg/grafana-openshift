@@ -8,6 +8,7 @@ RUN yum -y install unzip https://grafanarel.s3.amazonaws.com/builds/grafana-3.1.
     mv hawkular-grafana-datasource-master/dist/* /usr/share/grafana/public/app/plugins/datasource/hawkular/ && \
     yum -y remove unzip && yum clean all && rm -rf plugin.zip hawkular-grafana-datasource-master /tmp/* /var/tmp/*
 
+ADD grafana.ini /etc/grafana
 ADD run.sh /usr/share/grafana
 RUN for d in /usr/share/grafana /etc/grafana /var/lib/grafana /var/log/grafana; do chgrp -R 0 $d; chmod -R g+rwX $d; done
 
